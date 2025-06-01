@@ -1,0 +1,28 @@
+{
+  "dependencies": {
+    "parcel": "^2.15.2",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "name": "sunbite",
+  "description": "Dry fruits distributer",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "jest",
+    "start": "parcel index.html",
+    "build":"parcel build index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/asv02/SunBite.git"
+  },
+  "keywords": [
+    "sunbite"
+  ],
+  "author": "Akash Suryavanshi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/asv02/SunBite/issues"
+  },
+  "homepage": "https://github.com/asv02/SunBite#readme"
+}
