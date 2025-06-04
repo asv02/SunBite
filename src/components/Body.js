@@ -36,6 +36,7 @@ const Body = () => {
   let arr = useState([]);
   const restaurants = arr[0];
   const setRestaurants = arr[1];
+  const [allRestaurants, setAllRestaurants] = useState([]);
   const [search, setSearch] = useState("");
 
   useEffect(() => {
@@ -51,11 +52,21 @@ const Body = () => {
       setRestaurants(
         json?.data?.cards[4].card.card.gridElements.infoWithStyle.restaurants
       );
+      setAllRestaurants(
+        json?.data?.cards[4].card.card.gridElements.infoWithStyle.restaurants
+      );
     })();
   }, []);
 
   const searchRes = () => {
-    return "";
+    const filteredRes = allRestaurants.filter((res) => {
+      console.log("name->", res.info.name);
+      console.log("name->", search, " ");
+
+      return res.info.name.toLowerCase().includes(search.toLowerCase());
+    });
+    console.log("filteredRes->", filteredRes);
+    setRestaurants(filteredRes);
   };
 
   if (restaurants.length === 0) {
@@ -71,6 +82,12 @@ const Body = () => {
           value={search}
           onChange={(e) => {
             setSearch(e.target.value);
+            const filteredRes = allRestaurants.filter((res) => {
+              console.log("Target Value in onChange->",e.target.value)
+              return res.info.name.toLowerCase().includes(e.target.value.toLowerCase());
+            });
+            console.log("filteredRes on change->", filteredRes);
+            setRestaurants(filteredRes);
           }}
         ></input>
         <button id="search-btn" onClick={searchRes}>
