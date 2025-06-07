@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 // import restaurants from "../utils/restaurantList.js";
 import Shimmer from "./Shimmer.js";
+import OnlineStatus from "../utils/OnlineStatus.js";
 
 // const restaurantData = restaurants;
 
@@ -68,6 +69,11 @@ const Body = () => {
     console.log("filteredRes->", filteredRes);
     setRestaurants(filteredRes);
   };
+
+  if((OnlineStatus()) == false)
+    {
+      return <h1>It seems you are offline...Please provide internet connection.</h1>
+    }
 
   if (restaurants.length === 0) {
     return <Shimmer></Shimmer>;
