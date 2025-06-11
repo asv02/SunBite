@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Headers";
 import Body from "./components/Body";
@@ -9,36 +9,45 @@ import Contact from "./components/Contact";
 import { createBrowserRouter, RouterProvider } from "react-router";
 import RestaurantMenu from "./components/RestaurantMenu";
 import Shimmer from "./components/Shimmer";
-// import Grocery from "./components/Grocery";
+import UserContext from "./utils/UserContext";
+import { Provider } from "react-redux";
+import appStore from "./utils/appStore";
+
 
 const Grocery = lazy(() => {
   return import("./components/Grocery");
 });
 
 const Appcontainer = () => {
+  const [userName, setUserName] = useState("");
+  useEffect(() => {
+    setUserName("Akash");
+  }, []);
+
   return (
-    <div id="container">
-      <Header></Header>
-      <Body></Body>
-      <Footer></Footer>
-    </div>
+    <Provider store={appStore}>
+      <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
+        <div id="container">
+          <Header></Header>
+          <Body></Body>
+          <Footer></Footer>
+        </div>
+      </UserContext.Provider>
+    </Provider>
   );
 };
 
 const Approute = createBrowserRouter([
   {
     path: "/",
-    Component: Header,
-    // errorElement: <Error />,
+    Component: Appcontainer,
     children: [
-      {
-        path: "/",
-        Component: Body,
-      },
       {
         path: "/grocery",
         element: (
-          <Suspense fallback={<Shimmer/>}><Grocery/></Suspense>
+          <Suspense fallback={<Shimmer />}>
+            <Grocery />
+          </Suspense>
         ),
       },
       {

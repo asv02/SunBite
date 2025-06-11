@@ -1,10 +1,14 @@
 {
   "dependencies": {
+    "@reduxjs/toolkit": "^2.8.2",
+    "@tailwindcss/postcss": "^4.1.8",
     "parcel": "^2.15.2",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "react-redux": "^9.2.0",
     "react-router-dom": "^7.6.2",
-    "sunbite": "file:"
+    "sunbite": "file:",
+    "tailwindcss": "^4.1.8"
   },
   "name": "sunbite",
   "description": "Dry fruits distributer",
